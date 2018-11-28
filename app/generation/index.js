@@ -1,4 +1,4 @@
-const Dragon = require('../dragon')
+const Dragon = require('../dragon');
 const {
   REFRESH_RATE,
   SECONDS
@@ -7,8 +7,8 @@ const refreshRate = REFRESH_RATE * SECONDS;
 
 class Generation {
   constructor() {
-    this.generationId = undefined;
     this.expiration = this.calculateExpiration();
+    this.generationId = undefined;
     //millisecondUntilExpiration//Date.now() is also in milliseconds
   }
 
@@ -22,20 +22,20 @@ class Generation {
     return new Date(Date.now() + msUntilExpiration);
 
   }
-  newDragon() {
+  
+
+   newDragon() {
+     
+     
     if (Date.now() > this.expiration) {
       //backticks are needed  for this expression - it's a template literal string uses ${} for interpolation
       throw new Error(`This generation expired on ${this.expiration}`);
 
     }
 
-    return new Dragon({
-      generationId: this.generationId
-    }); 
+    return new Dragon({ generationId: this.generationId }); 
+    
+  } 
+} 
 
-  }
-
-
-}
-
-module.exports = Generation;
+  module.exports = Generation; 

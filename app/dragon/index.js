@@ -1,7 +1,8 @@
 //GLOBAL CONSTANT
-const TRAITS = require('../data/traits');
+const TRAITS = require('../../data/traits');
 
 const DEFAULT_PROPERTIES = {
+  dragonId: undefined,
   nickname: 'unnamed',
   generationId: undefined,
   get birthdate() {
@@ -14,11 +15,11 @@ const DEFAULT_PROPERTIES = {
     TRAITS.forEach(TRAIT => {
       const traitType = TRAIT.type;
       const traitValues = TRAIT.values;
-      
+
       const traitValue = traitValues[
-        //Math.floor removes decimal point and trailing values
         Math.floor(Math.random() * traitValues.length)
       ];
+
       traits.push({
         traitType,
         traitValue
@@ -30,15 +31,15 @@ const DEFAULT_PROPERTIES = {
 }
 
 class Dragon {
-  //keys
   constructor({
-    //keys below
+    dragonId,
     birthdate,
     nickname,
     traits,
-    generationId } = {}) {
+    generationId
+  } = {}) {
+    this.dragonId = dragonId || DEFAULT_PROPERTIES.dragonId;
     this.birthdate = birthdate || DEFAULT_PROPERTIES.birthdate;
-    //incoming birthdate of the Constructor
     this.nickname = nickname || DEFAULT_PROPERTIES.nickname;
     this.traits = traits || DEFAULT_PROPERTIES.randomTraits;
     this.generationId = generationId || DEFAULT_PROPERTIES.generationId;

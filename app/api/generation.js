@@ -8,5 +8,5 @@ router.get('/', (req, res) => {
 });
 
 //getting current generation with the Root slash endpoint.
-
+//console.log(router);
 module.exports = router;
