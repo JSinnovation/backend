@@ -1,14 +1,19 @@
 const express = require('express');//we don't need to specify the node_modules directory
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const GenerationEngine = require('./generation/engine');
 const dragonRouter = require('./api/dragon');
 const generationRouter = require('./api/generation');
+const accountRouter = require('./api/account');
 
 const app = express();
 const engine = new GenerationEngine();
 app.locals.engine = engine; //app.locals is used for binding objects to the Express Application 
 
-app.use(cors({origin: 'http://localhost:1234'}));
+app.use(cors({ origin: 'http://localhost:1234' }));
+app.use(bodyParser.json()); //allows us to write the express postrequest in our api/account.js file
+
+app.use('/account',accountRouter);
 app.use('/dragon', dragonRouter); //subroute where all route endpoints should attach to, second param is actual router instance
 app.use('/generation', generationRouter);
 //Error Handler Section
